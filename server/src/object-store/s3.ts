@@ -2,6 +2,7 @@ import {
     S3,
     PutObjectCommand,
     GetObjectCommand,
+    StorageClass,
 } from "@aws-sdk/client-s3";
 import type {Readable} from 'stream';
 import ObjectStore from "./index";
@@ -28,7 +29,7 @@ export default class S3ObjectStore extends ObjectStore {
             Key: key,
             Body: value,
             ContentType: contentType,
-            StorageClass: "INTELLIGENT_TIERING",
+            StorageClass: "INTELLIGENT_TIERING" as StorageClass,
         };
         await s3.send(new PutObjectCommand(params));
     }
