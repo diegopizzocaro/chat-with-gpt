@@ -5,7 +5,6 @@ import { OpenAIMessage, Parameters } from "../core/chat/types";
 
 export const defaultSystemPrompt = `
 You are ChatGPT, a large language model trained by OpenAI.
-Knowledge cutoff: 2021-09
 Current date and time: {{ datetime }}
 `.trim();
 
@@ -47,7 +46,7 @@ export class SystemPromptPlugin extends Plugin<SystemPromptPluginOptions> {
             {
                 role: 'system',
                 content: (this.options?.systemPrompt || defaultSystemPrompt)
-                    .replace('{{ datetime }}', new Date().toLocaleString()),
+                    .replace('{{ datetime }}', `Day: ${new Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date())}, Time: ${new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric' }).format(new Date())}`),
             },
             ...messages,
         ];
