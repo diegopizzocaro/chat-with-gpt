@@ -134,3 +134,7 @@ out
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+.DS_Store
+app/.DS_Store
+app/public/.DS_Store
+app/src/.DS_Store
